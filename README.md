@@ -34,16 +34,12 @@ Daily Inspiration Calendar is a Flask-based web application that provides daily 
     python -m venv venv
     source venv/bin/activate  # On Windows use `venv\Scripts\activate`
     ```
-3. **Install the dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-4. **Set up environment variables:**
+3. **Set up environment variables:**
 Create a .env file in the project root and add your API keys and other environment-specific settings.
     ```bash
    OPENWEATHER_API_KEY=your_openweathermap_api_key
     ```
-5. **Run the application**
+4. **Run the application**
     ```bash
    python app.py
     ```
