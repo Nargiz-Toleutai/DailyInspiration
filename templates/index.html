@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Inspiration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Daily Inspiration</h1>
+        <p><strong>Today's date:</strong> <span id="date"></span></p>
+         <p><strong>Current weather in <span id="city"></span></strong> <span id="weather"></span></p>
+        <p><strong>Today's holiday in the USA:</strong> <span id="holiday-us"></span></p>
+        <p><strong>Today's holiday in the Netherlands:</strong> <span id="holiday-nl"></span></p>
+         <p><strong>Today's holiday in Kazakhstan:</strong> <span id="holiday-kz"></span></p>
+        <p><strong>Today's inspirational quote:</strong> <span id="quote"></span></p>
+    </div>
+
+    <script>
+        fetch('/api/date')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('date').innerText = data.date;
+            });
+
+        fetch('/api/holiday/US')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('holiday-us').innerText = data.holiday;
+            });
+
+        fetch('/api/holiday/NL')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('holiday-nl').innerText = data.holiday;
+            });
+        fetch('/api/holiday/KZ')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('holiday-kz').innerText = data.holiday;
+            });
+
+         fetch('/api/holiday/KZ')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('holiday-kz').innerText = data.holiday;
+            });
+
+        fetch('/api/quote')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('quote').innerText = data.quote;
+            });
+            fetch('/api/weather')
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('weather').innerText = data.error;
+                } else {
+                    document.getElementById('city').innerText = data.city;
+                    document.getElementById('weather').innerText = `: ${data.description} ${data.temperature}°C`;
+                }
+            });
+    </script>
+</body>
+</html>
